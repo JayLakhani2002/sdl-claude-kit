@@ -38,13 +38,22 @@ foreach ($t in $tools) {
 # Pick up new PATH entries in this session.
 $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
 
-# Skills call `python3`; python.org installs only provide `python`. Add a python3.exe copy.
+# Skills call `python3`; python.org installs only provide `python`, and Windows ships a Store stub
+# named python3.exe that shadows it. Find the real python via the `py` launcher, add python3.exe
+# beside it, and put that folder first on the user PATH so it wins over the stub.
 if ($tools -contains 'python') {
-  $py = (Get-Command python -ErrorAction SilentlyContinue).Source
-  if ($py -and $py -notlike '*WindowsApps*') {
-    $p3 = Join-Path (Split-Path $py) 'python3.exe'
-    if (-not (Test-Path $p3)) { Copy-Item $py $p3 }
-  }
+  $real = $null
+  if (Get-Command py -ErrorAction SilentlyContinue) { $real = (& py -3 -c "import sys;print(sys.executable)" 2>$null) }
+  if ($real -and (Test-Path $real)) {
+    $dir = Split-Path $real
+    $p3 = Join-Path $dir 'python3.exe'
+    if (-not (Test-Path $p3)) { Copy-Item $real $p3 }
+    $user = [Environment]::GetEnvironmentVariable('Path','User')
+    if (($user -split ';')[0] -ne $dir) {
+      [Environment]::SetEnvironmentVariable('Path', "$dir;" + (($user -split ';' | Where-Object { $_ -and $_ -ne $dir }) -join ';'), 'User')
+    }
+    $env:Path = "$dir;$env:Path"
+  } else { Write-Warning 'python not found after install; reopen terminal and re-run.' }
 }
 
 if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {

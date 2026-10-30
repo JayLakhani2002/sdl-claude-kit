@@ -37,9 +37,9 @@ jobs:
         run: |
           $env:Path += ";$env:USERPROFILE\.local\bin"
           ./setup/install-windows.ps1 -Groups design -Repo "$PWD"
-      - name: python3 shim check
-        continue-on-error: true
+      - name: python3 resolves like a fresh terminal (registry PATH, no job PATH)
         run: |
-          $py=(Get-Command python).Source; $p3=Join-Path (Split-Path $py) 'python3.exe'
-          if(-not(Test-Path $p3)){Copy-Item $py $p3}
-          & $p3 --version
+          $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
+          (Get-Command python3).Source
+          python3 --version
+          if ((Get-Command python3).Source -like '*WindowsApps*') { 'python3 still resolves to the Store stub'; exit 1 }
