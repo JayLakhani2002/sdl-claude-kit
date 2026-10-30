@@ -37,13 +37,10 @@ jobs:
         run: |
           $env:Path += ";$env:USERPROFILE\.local\bin"
           ./setup/install-windows.ps1 -Groups design -Repo "$PWD"
-      - name: python3 diagnostics (fresh-terminal PATH)
-        continue-on-error: true
+      - name: installer's python3 shim exists, runs, and is first on user PATH
         run: |
-          $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
-          'where python3:'; where.exe python3
-          'where python:'; where.exe python
-          'py -0p:'; py -0p
-          'py -3 version:'; py -3 --version
-          'user PATH head:'; ([Environment]::GetEnvironmentVariable('Path','User') -split ';')[0..2]
-          foreach($p in (where.exe python3)){ "$p -> " + (Get-Item $p).Length + " bytes"; try{ & $p --version }catch{ "RUN FAILED: $_" } }
+          $dir = "$env:LOCALAPPDATA\Programs\Python\Python312"
+          & "$dir\python3.exe" --version
+          $first = ([Environment]::GetEnvironmentVariable('Path','User') -split ';')[0]
+          "user PATH first entry: $first"
+          if ($first -ne $dir) { 'python dir is not first on user PATH'; exit 1 }

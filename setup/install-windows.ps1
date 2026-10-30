@@ -43,7 +43,7 @@ $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Env
 # beside it, and put that folder first on the user PATH so it wins over the stub.
 if ($tools -contains 'python') {
   $real = $null
-  if (Get-Command py -ErrorAction SilentlyContinue) { $real = (& py -3 -c "import sys;print(sys.executable)" 2>$null) }
+  if (Get-Command py -ErrorAction SilentlyContinue) { $real = (& py -3.12 -c "import sys;print(sys.executable)" 2>$null) }
   if ($real -and (Test-Path $real)) {
     $dir = Split-Path $real
     $p3 = Join-Path $dir 'python3.exe'
