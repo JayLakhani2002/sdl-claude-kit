@@ -1,0 +1,45 @@
+name: windows-test
+on: [workflow_dispatch, push]
+jobs:
+  win:
+    runs-on: windows-latest
+    defaults: { run: { shell: pwsh } }
+    steps:
+      - uses: actions/checkout@v4
+      - name: PowerShell syntax check
+        run: |
+          $e=$null; [void][System.Management.Automation.Language.Parser]::ParseFile("$PWD/setup/install-windows.ps1",[ref]$null,[ref]$e)
+          if($e){$e|Out-String; exit 1}else{'syntax OK'}
+      - name: What is already on the runner
+        run: |
+          foreach($c in 'winget','git','node','python','python3','ffmpeg','claude'){ "{0,-8} {1}" -f $c,$(if(Get-Command $c -EA 0){(Get-Command $c).Source}else{'missing'}) }
+      - name: Windows path/name check on repo
+        run: |
+          $bad=Get-ChildItem -Recurse -File plugins | Where-Object { $_.FullName.Length -gt 240 }
+          "files: $((Get-ChildItem -Recurse -File plugins).Count); too-long paths: $($bad.Count)"; if($bad){exit 1}
+      - name: Install Claude Code (official script)
+        run: |
+          irm https://claude.ai/install.ps1 | iex
+          "$env:USERPROFILE\.local\bin" | Out-File -Append $env:GITHUB_PATH
+      - name: claude version + validate marketplace
+        run: |
+          $env:Path += ";$env:USERPROFILE\.local\bin"
+          claude --version
+          claude plugin validate .
+      - name: add marketplace from local path and install every group
+        run: |
+          $env:Path += ";$env:USERPROFILE\.local\bin"
+          claude plugin marketplace add "$PWD"
+          foreach($g in 'marketing','sales','content','design','research','engineering'){ claude plugin install "sdl-$g@sdl-claude-kit"; if($LASTEXITCODE){"FAILED $g"; exit 1} }
+          claude plugin list
+      - name: Run the real installer script (winget may be missing on runners)
+        continue-on-error: true
+        run: |
+          $env:Path += ";$env:USERPROFILE\.local\bin"
+          ./setup/install-windows.ps1 -Groups design -Repo "$PWD"
+      - name: python3 shim check
+        continue-on-error: true
+        run: |
+          $py=(Get-Command python).Source; $p3=Join-Path (Split-Path $py) 'python3.exe'
+          if(-not(Test-Path $p3)){Copy-Item $py $p3}
+          & $p3 --version

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "sdl-claude-kit",
+  "description": "SDL shared Claude Code skills, grouped by task",
+  "owner": {
+    "name": "SDL"
+  },
+  "plugins": [
+    {
+      "name": "sdl-marketing",
+      "source": "./plugins/sdl-marketing",
+      "description": "Marketing & Growth: ab-testing, ad-creative, ads, ai-seo, analytics, analytics-dashboard, ...",
+      "category": "marketing"
+    },
+    {
+      "name": "sdl-sales",
+      "source": "./plugins/sdl-sales",
+      "description": "Sales & Outreach: cold-email, emails, lead-signals, prospecting, recruit, referrals, ...",
+      "category": "sales"
+    },
+    {
+      "name": "sdl-content",
+      "source": "./plugins/sdl-content",
+      "description": "Writing & Content: copy-editing, copywriting, gemini-carousel, gemini-infographic, humanizer, newsletter-voice, ...",
+      "category": "content"
+    },
+    {
+      "name": "sdl-design",
+      "source": "./plugins/sdl-design",
+      "description": "Design & Creative: bklit-ui, brandkit, brutalist-skill, design-motion-principles, gpt-tasteskill, graphic-designer, ...",
+      "category": "design"
+    },
+    {
+      "name": "sdl-research",
+      "source": "./plugins/sdl-research",
+      "description": "Research & Productivity: agent-browser, ask-matt, brainstorming, defuddle, find-skills, grill-me, ...",
+      "category": "research"
+    },
+    {
+      "name": "sdl-engineering",
+      "source": "./plugins/sdl-engineering",
+      "description": "Engineering: code-review, codebase-design, diagnosing-bugs, dispatching-parallel-agents, domain-modeling, executing-plans, ...",
+      "category": "engineering"
+    }
+  ]
+}

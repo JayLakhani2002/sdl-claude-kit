@@ -1,0 +1,76 @@
+# Not shipped
+
+Left out of the marketplace. Re-add by editing `tools/build.py`.
+
+- `_gstack-command`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `autoplan`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `benchmark`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `benchmark-models`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `browse`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `canary`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `careful`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `codex`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `connect-chrome`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `context-restore`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `context-save`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `cso`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `design-consultation`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `design-html`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `design-review`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `design-shotgun`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `devex-review`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `diagram`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `document-generate`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `document-release`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `freeze`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `gstack-upgrade`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `guard`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `health`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `investigate`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `ios-clean`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `ios-design-review`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `ios-fix`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `ios-qa`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `ios-sync`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `land-and-deploy`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `landing-report`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `learn`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `make-pdf`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `office-hours`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `open-gstack-browser`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `pair-agent`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `plan-ceo-review`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `plan-design-review`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `plan-devex-review`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `plan-eng-review`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `plan-tune`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `qa`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `qa-only`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `review`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `scrape`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `setup-browser-cookies`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `setup-deploy`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `setup-gbrain`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `ship`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `skillify`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `spec`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `sync-gbrain`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `unfreeze`: needs gstack runtime (macOS/bash/bun); port before shipping
+- `synced`: no SKILL.md (sync data)
+- `anatomy`: personal / not for SDL staff
+- `chief-of-staff`: personal / not for SDL staff
+- `claude-handoff`: personal / not for SDL staff
+- `council-execution`: personal / not for SDL staff
+- `deep-execution`: personal / not for SDL staff
+- `graphify`: personal / not for SDL staff
+- `hrm`: personal / not for SDL staff
+- `json-canvas`: personal / not for SDL staff
+- `loop-me`: personal / not for SDL staff
+- `obsidian-bases`: personal / not for SDL staff
+- `obsidian-cli`: personal / not for SDL staff
+- `obsidian-markdown`: personal / not for SDL staff
+- `omnivoice`: personal / not for SDL staff
+- `pinned-comment`: personal / not for SDL staff
+- `playwright-skill`: personal / not for SDL staff
+- `provider-integration`: personal / not for SDL staff
+- `gstack`: tool repo (1.2 GB), not a skill
